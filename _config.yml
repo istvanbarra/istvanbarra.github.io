@@ -1,2 +1,6 @@
 name: István Barra
 markdown: kramdown
+analytics :
+  provider : google 
+  google : 
+      tracking_id : 'UA-54656641-2'
