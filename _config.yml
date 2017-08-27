@@ -1,6 +1,6 @@
 name: István Barra
 markdown: kramdown
-theme:minima
+theme: minima
 analytics :
   provider : google 
   google : 
