@@ -16,7 +16,7 @@ twitter_username: 'twitter_username'
 # Build settings
 markdown: kramdown
 
-permalink: '/:title/'
+permalink: 'http://istvanbarra.github.io/:title/'
 
 gems: [jekyll-paginate]
 
