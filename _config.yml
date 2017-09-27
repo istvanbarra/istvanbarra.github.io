@@ -16,6 +16,9 @@ twitter_username: 'twitter_username'
 # Build settings
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 permalink: '/:title/'
 
 gems: [jekyll-paginate]
