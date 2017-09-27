@@ -9,14 +9,14 @@
 title: István Barra
 description: '' # write a nice description for your blog
 baseurl: '' # the subpath of your site, e.g. /blog
-url: '' # the base hostname & protocol for your site http://www.example.com
+url: 'http://istvanbarra.github.io' # the base hostname & protocol for your site http://www.example.com
 # google_analytics: 'UA-54656641-2'
 twitter_username: 'twitter_username'
 
 # Build settings
 markdown: kramdown
-
-permalink: 'http://istvanbarra.github.io/:title/'
+highlighter: rouge
+permalink: '/:title/'
 
 gems: [jekyll-paginate]
 
