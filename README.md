@@ -1,89 +1,144 @@
-![](_assets/images/documentation/chalk-intro@2x.png)
+# Hydeout
 
-Chalk is a high quality, completely customizable, performant and 100% free blog template for Jekyll.
+Hydeout updates the original [Hyde](https://github.com/poole/hyde)
+theme for [Jekyll](http://jekyllrb.com) 3.x and adds new functionality.
 
-## Overview
+![Desktop](/_screenshots/1.png?raw=true)
+<img alt="Mobile home page" src="/_screenshots/2.png?raw=true" width="300px" />
+<img alt="Mobile post page" src="/_screenshots/3.png?raw=true" width="300px" />
 
-Features:
-  - Dark and Light theme.
-  - Filter on tags.
-  - customizable pagination.
-  - Beautified link sharing in Facebook and other social media.
-  - Automatic time to read post indicator.
-  - Automatic RSS feed.
-  - About page.
-  - 404 page.
-  - SEO optimized.
-  - PageSpeed optimized.
-  - Cross browser support (supports all modern browsers).
-  - Media embed for videos.
-  - Enlarge images on click.
-  - Support for local fonts
+### Usage
 
-Integrations
-  - [Google Analytics](https://analytics.google.com/analytics/web/)
-  - [Google Fonts](https://fonts.google.com/)
-  - [Disqus](https://disqus.com/)
-  - [Ionicons](http://ionicons.com/)
-  - Social media links
+Hydeout is available as the `jekyll-theme-hydeout` Ruby Gem.
+Add `gem "jekyll-theme-hydeout", "~> 3.4"` to your Gemfile and run
+`bundle install`.
 
-Used tools
-  - [Autoprefixer](https://github.com/postcss/autoprefixer)
-  - [Circle CI](https://circleci.com/)
-  - [Html-proofer](https://github.com/gjtorikian/html-proofer)
-  - [Jekyll](https://jekyllrb.com/)
-  - [Jekyll assets](https://github.com/jekyll/jekyll-assets)
-  - [Jekyll Sitemap](https://github.com/jekyll/jekyll-sitemap)
-  - [HTML5 Boilerplate](https://html5boilerplate.com/) (Influenced by)
-  - [Kickster](https://kickster.nielsenramon.com/)
-  - [Retina.js](https://imulus.github.io/retinajs/)
-  - [STACSS](https://stacss.nielsenramon.com/)
-  - [Yarn](https://yarnpkg.com)
+Hydeout uses pagination, so if you have an `index.md`, you'll need to swap
+it with an `index.html` that uses the `index` layout:
 
-## Usage
+```
+---
+layout: index
+title: Home
+---
+```
 
-### Installation
+### Keep It Simple
 
-If you haven't installed the following tools then go ahead and do so (make sure you have [Homebrew](https://brew.sh/) installed):
+In keeping with the original Hyde theme, Hydeout aims to keep the overall
+design lightweight and plugin-free. JavaScript is currently limited only
+to Disqus and Google Analytics (and is only loaded if you provide configuration
+variables).
 
-    brew install ruby
-    brew install npm
+Hydeout makes heavy use of Flexbox in its CSS. If Flexbox is not available,
+the CSS degrades into a single column layout.
 
-On windows, install Ruby and Node with the installers found here:
+### Customization
 
-  - [Ruby](https://rubyinstaller.org/)
-  - [Node.js](https://nodejs.org/en/download/)
+Hydeout replaces Hyde's class-based theming with the use
+of the following SASS variables:
 
-Next setup your environment:
+```scss
+$sidebar-bg-color: #202020 !default;
+$sidebar-sticky: true !default;
+$layout-reverse: false !default;
+$link-color: #268bd2 !default;
+```
 
-    bin/setup
+To override these variables, create your own `assets/css/main.scss` file.
+Define your own variables, then import in Hydeout's SCSS, like so:
 
-### Development
+```scss
+---
+# Jekyll needs front matter for SCSS files
+---
 
-Run Jekyll:
+$sidebar-bg-color: #ac4142;
+$link-color: #ac4142;
+$sidebar-sticky: false;
+@import "hydeout";
+```
 
-    bundle exec jekyll serve
+See the [_variables](_sass/hydeout/_variables.scss) file for other variables
+you can override.
 
-## Deploy to GitHub Pages
+You can see the full set of partials you can replace in the
+[`_includes`](_includes) folder, but there are a few worth noting:
 
-Before you deploy, commit your changes to any working branch except the `gh-pages` one then run the following command:
+* `_includes/copyright.html` - Insert your own copyright here.
 
-    bin/deploy
+* `_includes/custom-head.html` - Insert custom head tags (e.g. to load your
+  own stylesheets)
 
-**Important note**: Chalk does not support the standard way of Jekyll hosting on GitHub Pages. You need to deploy your working branch (can be any branch, for xxx.github.io users: use another branch than master) with the `bin/deploy` script. This is because Chalk uses Jekyll plugins that aren't supported by GitHub pages. The `bin/deploy` script will automatically build the entire project, then push it to the `gh-pages` branch of your repo. The script creates that branch for you so no need to create it yourself.
+* `_includes/custom-foot.html` - Insert custom elements at the end of the
+  body (e.g. for custom JS)
 
-You can find more info on how to use the `gh-pages` branch and a custom domain [here](https://help.github.com/articles/quick-start-setting-up-a-custom-domain/).
+* `_includes/custom-nav-links.html` - Additional nav links to insert at the
+  end of the list of links in the sidebar.
 
-[View this](https://github.com/nielsenramon/kickster#automated-deployment-with-circle-ci) for more info about automated deployment with Circle CI.
+  Pro-tip: The `nav`s in the sidebar are flexboxes. Use the `order` property
+  to order your links.
 
-## License
+* `_includes/custom-icon-links.html`- Additional icon links to insert at the
+  end of the icon links at the bottom of the sidebar. You can use the `order`
+  property to re-order.
 
-MIT License
+* `_includes/favicons.html` - Replace references to `favicon.ico` and
+  `favicon.png` with your own favicons references.
 
-## Contributing
+* `_includes/font-includes.html` - The Abril Fatface font used for the site
+  title is loaded here. If you're overriding that font in the CSS, be sure
+  to also remove the font load reference here.
 
-1. Fork it (https://github.com/[my-github-username]/chalk/fork)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+### New Features
+
+* Hydeout adds a new tags page (accessible in the sidebar). Just create a
+  new page with the tags layout:
+
+  ```
+  ---
+  layout: tags
+  title: Tags
+  ---
+  ```
+
+* Hydeout adds a new "category" layout for dedicated category pages.
+  Category pages are automatically added to the sidebar. All other pages
+  must have `sidebar_link: true` in their front matter to show up in
+  the sidebar. To create a category page, use the `category` layout"
+
+  ```
+  ---
+  layout: category
+  title: My Category
+  ---
+
+  Description of "My Category"
+  ```
+
+* A simple redirect-to-Google search is available. Just create a page with
+  the `search` layout.
+
+  ```
+  ---
+  layout: search
+  title: Google Search
+  ---
+  ```
+
+* Disqus integration is ready out of the box. Just add the following to
+  your config file:
+
+  ```yaml
+  disqus:
+    shortname: my-disqus-shortname
+  ```
+
+  If you don't want Disqus or want to use something else, override
+  `comments.html`.
+
+* For Google Analytics support, define a `google_analytics` variable with
+  your property ID in your config file.
+
+There's also a bunch of minor tweaks and adjustments throughout the
+theme. Hope this works for you!
