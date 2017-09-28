@@ -19,6 +19,9 @@ author:
 
 google_analytics: UA-54656641-2
 
+disqus:
+  shortname: istvan-barra
+  
 paginate:         5
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
