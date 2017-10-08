@@ -20,7 +20,7 @@ General hidden Markov models can be specified
 \\[x_1 \sim p_{\theta}(\cdot),\\]
 where \\(x_t\\) is the scalar or vector of hidden states at time \\(t\\), while \\(y_{t}\\) is the scalar or vector observation at time \\(t\\).  We can think about \\(y_t\\) as a noisy measurement of the latent state \\(x_t\\). The dynamics of the state is governed by the transition density \\(p_{\theta}(x_{t+1}|x_t)\\), while the dependence between \\(y_t\\) and \\(x_t\\) or alternatively the distirbution of noise is determined by the observation density \\(p_{\theta}(y_{t}|x_t)\\). Note that both of these densities can depend on hyper paramters \\(\theta\\).
 
-![placeholder](https://github.com/istvanbarra/istvanbarra.github.io/blob/master/_posts/hmm "HMM")
+![hmm](https://github.com/istvanbarra/istvanbarra.github.io/blob/master/_posts/hmm.png "HMM")
 
 In hidden Markov models we are usually interested in three quantities. First of all, we are interested in the dsitribution of the current state conditional on the current nad past observations
 \\[p(x_t | y_{t},\ldots, y_{1}),\\]
